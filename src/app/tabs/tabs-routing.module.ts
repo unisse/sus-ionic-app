@@ -1,53 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import {AuthGuardService} from '../services/auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'discussoes',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../pages/discussoes/tab1.module').then(m => m.Tab1PageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'hospitais',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../pages/hospitais/tab2.module').then(m => m.Tab2PageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'ocorrencias',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../pages/ocorrencias/tab3.module').then(m => m.Tab3PageModule)
           }
         ]
       },
       {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
+        path: 'preferencias',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+                import('../pages/preferencias/preferencias.module').then(m => m.PreferenciasPageModule)
+          }
+        ]
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
   }
 ];
 

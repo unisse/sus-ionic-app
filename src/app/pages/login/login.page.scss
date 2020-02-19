@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:500&display=swap');
+
+.google-btn {
+  background-color: #ffffff;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  width: 230px;
+  height: 40px;
+  border-radius: 1px;
+  color: rgba(0, 0, 0, 0.55);
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.55);
+  &:hover {
+    background-color: #4285F4;
+    color: #ffffff;
+  }
+}
+
+.google-logo {
+  font-size: 40px;
+}
+
+.google-txt {
+  float: right;
+  width: calc(100% - 40px);
+  padding: 10px;
+}
