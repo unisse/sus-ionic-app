@@ -1,6 +1,18 @@
-<ion-content>
+<ion-content class="login-page">
 
-  <div class="google-btn">
+  <ion-slides style="height: 90vh" [options]="">
+    <ion-slide >
+      <p>Batata</p>
+    </ion-slide>
+    <ion-slide >
+      <p>Batata1</p>
+    </ion-slide>
+    <ion-slide >
+      <p>Batata2</p>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="google-btn" (click)="login()">
     <ion-icon class="google-logo" src="/assets/icon/btn-google.svg"></ion-icon>
     <div class="google-txt">Fazer login com Google</div>
   </div>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "unisse-sus": {
+      "hosting": {
+        "app": [
+          "unisse-sus"
+        ]
+      }
+    }
+  }
+}

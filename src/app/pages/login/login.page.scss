@@ -1,17 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:500&display=swap');
 
+ion-content {
+  --ion-background-color: #2DE1C2;
+}
+
 .google-btn {
-  background-color: #ffffff;
+  cursor: pointer;
+  background-color: #4285F4;
   margin: 0 auto;
+  color: #ffffff;
+  bottom: 15px;
   font-family: 'Roboto', sans-serif;
   width: 230px;
   height: 40px;
   border-radius: 1px;
-  color: rgba(0, 0, 0, 0.55);
   box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.55);
-  &:hover {
-    background-color: #4285F4;
-    color: #ffffff;
+  &:active {
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.55);
   }
 }
 
