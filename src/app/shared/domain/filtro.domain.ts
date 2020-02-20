@@ -15,6 +15,21 @@ export class FiltroUtil {
     }
 }
 
+export class OrderBy implements Filtro {
+
+    uid = 'OrderByFilter';
+    orderBy: string;
+
+    constructor(orderBy: string) {
+        this.orderBy = orderBy;
+    }
+
+    public filter(ref: CollectionReference<DocumentData> | Query<DocumentData>): Query<DocumentData> {
+        return ref.orderBy(this.orderBy);
+    }
+
+}
+
 export class StartWithFilter implements Filtro {
 
     uid = 'StartWithFilter';

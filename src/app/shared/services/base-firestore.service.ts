@@ -37,7 +37,7 @@ export class BaseFirestoreService<T extends BaseEntity> {
     return this.findAll().pipe(map(docs => docs.map(d => this.toObj(d))));
   }
 
-  public filterCollection(filtros: Filtro[], lastObj?: SearchResult<T>): Observable< SearchResult<T>[]> {
+  public filterCollection(filtros?: Filtro[], lastObj?: SearchResult<T>): Observable< SearchResult<T>[]> {
     return this.firestore.collection<T>(this.collection, ref =>
       QueryBuilder.init(ref, this.getDoc(lastObj)).addFiltros(filtros).build()
     ).get().pipe(map(snap => this.mapDocs(snap.docs)));
@@ -49,7 +49,7 @@ export class BaseFirestoreService<T extends BaseEntity> {
 
   private mapDocs(docs: DocumentSnapshot<DocumentData>[]): SearchResult<T>[] {
     return docs.map(doc => {
-      return {obj: this.toObj(doc), doc};
+      return SearchResult.create<T>(this.toObj(doc), doc);
     });
   }
 
@@ -136,18 +136,18 @@ export class QueryBuilder {
     return new QueryBuilder(ref, last);
   }
 
-  public addFiltro(filtro: Filtro): QueryBuilder {
+  private addFiltro(filtro: Filtro): QueryBuilder {
     this.query = filtro.filter(this.query);
     return this;
   }
 
-  public addFiltros(filtros: Filtro[]): QueryBuilder {
-    filtros.forEach(f => this.addFiltro(f));
+  public addFiltros(filtros?: Filtro[]): QueryBuilder {
+    if (filtros) { filtros.forEach(f => this.addFiltro(f)); }
     return this;
   }
 
   public build(): Query<DocumentData> {
-    const query = this.query.orderBy('nome').limit(Constants.limit);
+    const query = this.query.limit(Constants.limit);
     return this.treatForLast(query);
   }
 
@@ -161,9 +161,34 @@ export class QueryBuilder {
 
 }
 
-export interface SearchResult<T extends BaseEntity> {
-  obj: T;
-  doc: DocumentSnapshot<DocumentData>;
+export class SearchResult<T extends BaseEntity> {
+  private _obj: T;
+  private _doc: DocumentSnapshot<DocumentData>;
+  private _empty: boolean;
+
+  private constructor(empty = false, obj?: T, doc?: DocumentSnapshot<DocumentData>) {
+    this._obj = obj;
+    this._doc = doc;
+    this._empty = empty;
+  }
+
+  public static createEmpty<T extends BaseEntity>(): SearchResult<T> {
+    return new SearchResult( true);
+  }
+
+  public static create<T extends BaseEntity>(obj?: T, doc?: DocumentSnapshot<DocumentData>): SearchResult<T> {
+    return new SearchResult(false, obj, doc);
+  }
+
+  get obj(): T {
+    return this._obj;
+  }
+  get doc(): firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData> {
+    return this._doc;
+  }
+  get empty(): boolean {
+    return this._empty;
+  }
 }
 
 export class Constants {

@@ -1,47 +1,54 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll} from '@ionic/angular';
+import {PerguntaService} from './services/pergunta.service';
+import {Constants, SearchResult} from '../../shared/services/base-firestore.service';
+import {Pergunta} from './domain/pergunta';
+import {Filtro, OrderBy} from '../../shared/domain/filtro.domain';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-discussoes',
   templateUrl: 'discussoes.page.html',
   styleUrls: ['discussoes.page.scss']
 })
-export class DiscussoesPage {
+export class DiscussoesPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll, {static: true}) infiniteScroll: IonInfiniteScroll;
 
   onSearch = false;
   dataList: any;
+  perguntas: SearchResult<Pergunta>[] = [];
+  orderBy: Filtro = new OrderBy('criacao');
 
-  constructor() {
-    this.dataList = [];
+  constructor(private perguntaService: PerguntaService, private router: Router) {
+  }
 
-    for (let i = 0; i < 25; i++) {
-      this.dataList.push('Item number ' + this.dataList.length);
+  ngOnInit(): void {
+    this.addEleven();
+    this.perguntaService.filterCollection([this.orderBy]).toPromise().then(perguntas => {
+      this.perguntas = perguntas;
+    });
+  }
+
+  private addEleven(): void {
+    for (let i = 0; i < 11; i++) {
+      this.perguntas.push(SearchResult.createEmpty<Pergunta>());
     }
   }
 
   loadData(event) {
-
-    setTimeout(() => {
-      console.log('Done');
-      for (let i = 0; i < 25; i++) {
-        this.dataList.push('Item number ' + this.dataList.length);
-      }
+    const lastPergunta = this.perguntas[this.perguntas.length - 1];
+    this.addEleven();
+    this.perguntaService.filterCollection([this.orderBy], lastPergunta).toPromise().then(perguntas => {
+      this.perguntas = this.perguntas.filter(p => !p.empty).concat(perguntas);
       event.target.complete();
-
-      if (this.dataList.length === 1000) {
+      if (perguntas.length < Constants.limit) {
         event.target.disabled = true;
       }
-    }, 500);
-  }
-
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+    });
   }
 
   showSearch() {
-    console.log('batata');
     this.onSearch = true;
   }
 
@@ -49,4 +56,7 @@ export class DiscussoesPage {
     this.onSearch = false;
   }
 
+  goToDetalhe(pergunta: SearchResult<Pergunta>) {
+    this.router.navigate(['/app/pergunta/' + pergunta.obj.uid, {pergunta: pergunta.obj}]);
+  }
 }

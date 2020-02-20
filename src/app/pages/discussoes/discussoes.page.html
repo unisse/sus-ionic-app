@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ng-container *ngIf="!onSearch">
             <ion-buttons slot="start">
-                <ion-button color="primary">
+                <ion-button color="primary" routerLink="/app/cadastrar/pergunta">
                     <ion-icon slot="icon-only" name="add"></ion-icon>
                 </ion-button>
             </ion-buttons>
@@ -28,7 +28,11 @@
 
 <ion-content [fullscreen]="true">
     <ion-list>
-        <app-pergunta-item *ngFor="let item of dataList"></app-pergunta-item>
+        <app-pergunta-item (click)="goToDetalhe(pergunta)"
+                           *ngFor="let pergunta of perguntas"
+                           [empty]="pergunta.empty"
+                           [pergunta]="pergunta.obj">
+        </app-pergunta-item>
     </ion-list>
 
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
