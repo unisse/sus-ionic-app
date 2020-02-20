@@ -1,20 +1,27 @@
-<ion-content class="login-page">
+<ion-content>
+    <div class="login-background">
+        <ion-slides style="height: 90vh" [options]="slideOptsOne">
+            <ion-slide>
+                <app-explicacao [svg]="'/assets/pages/login/hospital.svg'" pergunta="Como está UPA hoje?">
+                    Aqui você vê em tempo real a situação de todas unidades de saúde próximas de você.
+                </app-explicacao>
+            </ion-slide>
+            <ion-slide>
+                <app-explicacao svg="/assets/pages/login/question.svg" pergunta="Mas eu tenho direito a isso?">
+                    Tire dúvidas e entre em discussões sobre o Sistema Único de Saúde.
+                </app-explicacao>
+            </ion-slide>
+            <ion-slide>
+                <app-explicacao svg="/assets/pages/login/megaphone.svg" pergunta="Isso não devia acontecer!">
+                    Viu algum problema ou deseja informar a todos sobre um elogio, aqui sua voz é ouvida.
+                </app-explicacao>
+            </ion-slide>
+        </ion-slides>
 
-  <ion-slides style="height: 90vh" [options]="">
-    <ion-slide >
-      <p>Batata</p>
-    </ion-slide>
-    <ion-slide >
-      <p>Batata1</p>
-    </ion-slide>
-    <ion-slide >
-      <p>Batata2</p>
-    </ion-slide>
-  </ion-slides>
+        <div class="google-btn" (click)="login()">
+            <ion-icon class="google-logo" src="/assets/icon/btn-google.svg"></ion-icon>
+            <div class="google-txt">Fazer login com Google</div>
+        </div>
 
-  <div class="google-btn" (click)="login()">
-    <ion-icon class="google-logo" src="/assets/icon/btn-google.svg"></ion-icon>
-    <div class="google-txt">Fazer login com Google</div>
-  </div>
-
+    </div>
 </ion-content>

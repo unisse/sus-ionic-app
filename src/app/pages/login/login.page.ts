@@ -9,6 +9,12 @@ import {Router} from "@angular/router";
 })
 export class LoginPage implements OnInit {
 
+  slideOptsOne = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay: true
+  };
+
   constructor(private authService: AuthService,
               private routes: Router
   ) { }
