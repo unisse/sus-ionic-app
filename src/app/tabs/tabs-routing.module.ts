@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import {AuthGuardService} from '../services/auth-guard.service';
+import {AuthGuardService} from '../shared/services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -14,8 +14,9 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            canActivate: [AuthGuardService],
             loadChildren: () =>
-              import('../pages/discussoes/tab1.module').then(m => m.Tab1PageModule)
+              import('../pages/discussoes/discussoes.module').then(m => m.DiscussoesPageModule)
           }
         ]
       },
@@ -24,6 +25,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            canActivate: [AuthGuardService],
             loadChildren: () =>
               import('../pages/hospitais/tab2.module').then(m => m.Tab2PageModule)
           }
@@ -34,6 +36,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            canActivate: [AuthGuardService],
             loadChildren: () =>
               import('../pages/ocorrencias/tab3.module').then(m => m.Tab3PageModule)
           }
@@ -44,6 +47,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            canActivate: [AuthGuardService],
             loadChildren: () =>
                 import('../pages/preferencias/preferencias.module').then(m => m.PreferenciasPageModule)
           }

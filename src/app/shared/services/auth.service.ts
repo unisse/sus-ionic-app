@@ -5,13 +5,14 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import UserCredential = firebase.auth.UserCredential;
 import {User} from 'firebase';
 import {map} from "rxjs/operators";
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private routes: Router) { }
 
   public doGoogleLogin(): Promise<UserCredential> {
     return new Promise<any>((resolve, reject) => {
@@ -35,6 +36,6 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.afAuth.auth.signOut().then();
+    this.afAuth.auth.signOut().then( () => this.routes.navigate(['/']));
   }
 }

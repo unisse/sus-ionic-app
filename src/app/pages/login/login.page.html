@@ -1,6 +1,6 @@
-<ion-content>
+<ion-content [fullscreen]="true">
     <div class="login-background">
-        <ion-slides style="height: 90vh" [options]="slideOptsOne">
+        <ion-slides class="slides-login" [options]="slideOptsOne">
             <ion-slide>
                 <app-explicacao [svg]="'/assets/pages/login/hospital.svg'" pergunta="Como está UPA hoje?">
                     Aqui você vê em tempo real a situação de todas unidades de saúde próximas de você.

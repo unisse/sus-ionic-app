@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ng-container *ngIf="!onSearch">
+            <ion-buttons slot="start">
+                <ion-button color="primary">
+                    <ion-icon slot="icon-only" name="add"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+                <ion-button  (click)="showSearch()" color="primary">
+                    <ion-icon slot="icon-only" name="search"></ion-icon>
+                </ion-button>
+                <ion-button color="primary">
+                    <ion-icon slot="icon-only" name="filter"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-title >
+                <ion-icon src="/assets/pages/perguntas/communist.svg" style="font-size: 20px"></ion-icon>
+                Unisse SUS
+            </ion-title>
+        </ng-container>
+        <ion-searchbar *ngIf="onSearch" color="primary" showCancelButton="always"
+                       [animated]="true" (ionCancel)="hideSearch()"
+                       style="color: white;" placeholder="Pesquisar">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-list>
+        <app-pergunta-item *ngFor="let item of dataList"></app-pergunta-item>
+    </ion-list>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
