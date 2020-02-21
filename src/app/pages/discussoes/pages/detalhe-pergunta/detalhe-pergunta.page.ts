@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Route} from '@angular/router';
 import {PerguntaService} from '../../services/pergunta.service';
 import {Pergunta, PerguntaBuilder} from '../../domain/pergunta';
+import {ModalController} from '@ionic/angular';
+import {CadastrarRespostaComponent} from './components/cadastrar-resposta/cadastrar-resposta.component';
 
 @Component({
   selector: 'app-detalhe-pergunta',
@@ -12,7 +14,9 @@ export class DetalhePerguntaPage implements OnInit {
 
   pergunta: Pergunta;
 
-  constructor(private route: ActivatedRoute, private perguntaService: PerguntaService) { }
+  constructor(private route: ActivatedRoute,
+              private perguntaService: PerguntaService,
+              private modalController: ModalController) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -20,4 +24,10 @@ export class DetalhePerguntaPage implements OnInit {
     });
   }
 
+    async cadastrarResposta() {
+      const modal = await this.modalController.create({
+        component: CadastrarRespostaComponent
+      });
+      return await modal.present();
+    }
 }

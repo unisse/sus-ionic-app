@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonInfiniteScroll} from '@ionic/angular';
+import {IonInfiniteScroll, ModalController} from '@ionic/angular';
 import {PerguntaService} from './services/pergunta.service';
 import {Constants, SearchResult} from '../../shared/services/base-firestore.service';
 import {Pergunta} from './domain/pergunta';
@@ -16,7 +16,6 @@ export class DiscussoesPage implements OnInit {
   @ViewChild(IonInfiniteScroll, {static: true}) infiniteScroll: IonInfiniteScroll;
 
   onSearch = false;
-  dataList: any;
   perguntas: SearchResult<Pergunta>[] = [];
   orderBy: Filtro = new OrderBy('criacao');
 
@@ -57,6 +56,7 @@ export class DiscussoesPage implements OnInit {
   }
 
   goToDetalhe(pergunta: SearchResult<Pergunta>) {
-    this.router.navigate(['/app/pergunta/' + pergunta.obj.uid, {pergunta: pergunta.obj}]);
+    this.router.navigate(['/app/pergunta/' + pergunta.obj.uid]);
   }
+
 }

@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {AuthService} from '../shared/services/auth.service';
+import {User} from 'firebase';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +9,10 @@ import {Component} from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  user: User;
+
+  constructor(private authService: AuthService) {
+    this.authService.currentUser().subscribe(user => this.user = user);
+  }
 
 }

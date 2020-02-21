@@ -1,0 +1,32 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="2">
+      <ion-grid>
+        <ion-row>
+          <ion-icon name="arrow-up-circle-outline" style="font-size: 30px; margin: 0 auto"></ion-icon>
+        </ion-row>
+        <ion-row>
+          <ion-skeleton-text  *ngIf="!pergunta" animated style="width: 60%; height: 23px; margin: 0 auto"></ion-skeleton-text>
+          <span style="font-size: 20px; margin: 0 auto">{{pergunta?.pontuacao}}</span>
+        </ion-row>
+        <ion-row>
+          <ion-icon name="arrow-down-circle-outline" style="font-size: 30px; margin: 0 auto"></ion-icon>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+    <ion-col size="10"  style="font-weight: bold; padding: 15px 15px 0px; border-left: 1px solid rgba(42,42,42,0.51);">
+      {{pergunta?.titulo}}
+    </ion-col>
+    <ion-col size="12"  style="padding: 15px; border-top: 1px solid rgba(42,42,42,0.51);">
+      {{pergunta?.corpo}}
+    </ion-col>
+  </ion-row>
+  <ion-row style="height: 35px;border-top: 1px solid rgba(42,42,42,0.51);">
+    <ion-icon name="star"></ion-icon> Favorito
+  </ion-row>
+  <ion-row style="height: 35px; border-top: 1px solid rgba(42,42,42,0.51); border-bottom: 1px solid rgba(42,42,42,0.51);">
+    <ion-avatar style="height: 20px; width: 20px;">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+  </ion-row>
+</ion-grid>

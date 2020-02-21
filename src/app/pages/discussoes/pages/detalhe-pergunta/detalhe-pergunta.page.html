@@ -1,17 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="'app/discussoes'" color="primary"></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      <ion-icon src="/assets/pages/perguntas/communist.svg" style="font-size: 20px"></ion-icon>
-      Unisse SUS
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [defaultHref]="'app/discussoes'" color="primary"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <ion-icon src="/assets/pages/perguntas/communist.svg" style="font-size: 20px"></ion-icon>
+            UniSUS
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  {{pergunta?.titulo}}
+    <app-pergunta-card [pergunta]="pergunta"></app-pergunta-card>
+
+    <div style="height: 15px; width: 100%; background-color: rgba(13,13,13,0.21)"> </div>
 
 </ion-content>
+
+<ion-footer style="padding: 10px 0" mode="">
+  <ion-button (click)="cadastrarResposta()" expand="block" style="color: white; width: 80%; margin: 0 auto">Nova Resposta</ion-button>
+</ion-footer>

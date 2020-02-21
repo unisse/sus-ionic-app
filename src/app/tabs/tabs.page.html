@@ -3,7 +3,7 @@
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="discussoes">
       <ion-icon name="library"></ion-icon>
-      <ion-label>Discussões</ion-label>
+      <ion-label>Dúvidas</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="hospitais">
@@ -17,7 +17,9 @@
     </ion-tab-button>
 
     <ion-tab-button tab="preferencias">
-      <ion-icon name="person-circle"></ion-icon>
+        <ion-avatar  *ngIf="user?.photoURL" style="max-height: 25px; max-width: 25px;" on>
+          <img [src]="user?.photoURL">
+        </ion-avatar>
       <ion-label>Preferências</ion-label>
     </ion-tab-button>
   </ion-tab-bar>

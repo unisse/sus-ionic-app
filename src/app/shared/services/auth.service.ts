@@ -31,6 +31,10 @@ export class AuthService {
     return this.afAuth.user;
   }
 
+  public user(): User {
+    return this.afAuth.auth.currentUser;
+  }
+
   public isAuthenticaded(): Observable<boolean> {
     return this.afAuth.user.pipe(map(user => user != null));
   }
