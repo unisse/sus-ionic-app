@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { HospitalPageRoutingModule } from './hospital-routing.module';
 
 import { HospitalPage } from './hospital.page';
+import {CabecalhoHospitalComponent} from './components/cabecalho-hospital/cabecalho-hospital.component';
+import {FeedHospitalComponent} from './components/feed-hospital/feed-hospital.component';
+import {HistoricoOcorreciasComponent} from './components/historico-ocorrecias/historico-ocorrecias.component';
 
 @NgModule({
   imports: [
@@ -15,6 +18,6 @@ import { HospitalPage } from './hospital.page';
     IonicModule,
     HospitalPageRoutingModule
   ],
-  declarations: [HospitalPage]
+  declarations: [HospitalPage, CabecalhoHospitalComponent, FeedHospitalComponent, HistoricoOcorreciasComponent]
 })
 export class HospitalPageModule {}

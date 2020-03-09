@@ -17,4 +17,21 @@
 
 <ion-content>
 
+  <app-cabecalho-hospital></app-cabecalho-hospital>
+
+  <ion-segment (ionChange)="segmentChanged($event)" value="comentarios" >
+    <ion-segment-button value="comentarios" >
+      <ion-label>Comentários</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ocorrencias">
+      <ion-label>Ocorrências</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <app-feed-hospital *ngIf="showComentarios"></app-feed-hospital>
+
+  <app-historico-ocorrecias *ngIf="!showComentarios"></app-historico-ocorrecias>
+
+
+
 </ion-content>
