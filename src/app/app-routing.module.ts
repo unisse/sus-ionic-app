@@ -20,7 +20,16 @@ const routes: Routes = [
   {
     path: 'app/pergunta/:id',
     loadChildren: () => import('./pages/discussoes/pages/detalhe-pergunta/detalhe-pergunta.module').then( m => m.DetalhePerguntaPageModule)
+  },
+  {
+    path: 'app/hospital/:id',
+    loadChildren: () => import('./pages/hospitais/pages/hospital/hospital.module').then( m => m.HospitalPageModule)
+  },
+  {
+    path: 'app/cadastrar/ocorrencia',
+    loadChildren: () => import('./pages/ocorrencias/pages/nova-ocorrencia/nova-ocorrencia.module').then( m => m.NovaOcorrenciaPageModule)
   }
+
 
 ];
 @NgModule({

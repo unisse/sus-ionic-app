@@ -3,8 +3,9 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab2Page } from './tab2.page';
+import { HospitaisPage } from './hospitais.page';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
+import {HospitalItemComponent} from './components/hospital-item/hospital-item.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,8 @@ import { ExploreContainerComponentModule } from '../../explore-container/explore
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    RouterModule.forChild([{ path: '', component: Tab2Page }])
+    RouterModule.forChild([{ path: '', component: HospitaisPage }])
   ],
-  declarations: [Tab2Page]
+  declarations: [HospitaisPage, HospitalItemComponent]
 })
-export class Tab2PageModule {}
+export class HospitaisPageModule {}

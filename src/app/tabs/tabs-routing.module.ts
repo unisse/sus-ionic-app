@@ -27,7 +27,7 @@ const routes: Routes = [
             path: '',
             canActivate: [AuthGuardService],
             loadChildren: () =>
-              import('../pages/hospitais/tab2.module').then(m => m.Tab2PageModule)
+              import('../pages/hospitais/hospitais.module').then(m => m.HospitaisPageModule)
           }
         ]
       },
@@ -38,7 +38,7 @@ const routes: Routes = [
             path: '',
             canActivate: [AuthGuardService],
             loadChildren: () =>
-              import('../pages/ocorrencias/tab3.module').then(m => m.Tab3PageModule)
+              import('../pages/ocorrencias/ocorrencias.module').then(m => m.OcorrenciasPageModule)
           }
         ]
       },

@@ -15,4 +15,16 @@
     </ion-toolbar>
 </ion-header>
 
-ta
+<ion-content [fullscreen]="true">
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label position="floating">Título</ion-label>
+            <ion-input formControlName="titulo" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Corpo</ion-label>
+            <ion-textarea auto-grow formControlName="corpo" required></ion-textarea>
+        </ion-item>
+    </form>
+</ion-content>
